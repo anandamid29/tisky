@@ -5,115 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Šťastný ať je celý vesmír • Tisky</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #0a0015;
-      color: #e0d0ff;
-      text-align: center;
-      line-height: 1.6;
-    }
-    .stars {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: 
-        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08) 1px, transparent 1px),
-        radial-gradient(circle at 90% 80%, rgba(200,200,255,0.06) 2px, transparent 2px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: -1;
-    }
-    header {
-      padding: 80px 20px 50px;
-      background: linear-gradient(to bottom, rgba(20,0,60,0.8), rgba(10,0,30,0.95));
-    }
-    h1 {
-      font-size: 3.2rem;
-      margin: 0 0 10px;
-      color: #d0b0ff;
-      text-shadow: 0 0 20px #a080ff;
-    }
-    .subtitle {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      margin-bottom: 40px;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto 60px;
-      padding: 0 20px;
-    }
-    .card {
-      background: rgba(30,10,70,0.6);
-      border: 1px solid rgba(160,120,255,0.3);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(4px);
-    }
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(160,100,255,0.4);
-    }
-    .card img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-    }
-    .info {
-      padding: 20px;
-    }
-    .title {
-      font-size: 1.5rem;
-      margin: 0 0 10px;
-      color: #c0a0ff;
-    }
-    .price {
-      font-size: 1.8rem;
-      color: #80ffff;
-      margin: 10px 0;
-    }
-    button {
-      background: linear-gradient(45deg, #a080ff, #80c0ff);
-      color: #000;
-      border: none;
-      padding: 12px 32px;
-      border-radius: 50px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: 0.3s;
-    }
-    button:hover {
-      transform: scale(1.05);
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-    }
-    .modal-content {
-      background: rgba(30,10,70,0.95);
-      padding: 40px;
-      border-radius: 20px;
-      max-width: 90%;
-      width: 500px;
-      border: 1px solid #a080ff;
-    }
-    footer {
-      padding: 40px 20px;
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
+    body { margin:0; font-family:'Segoe UI', Arial, sans-serif; background:#0a0015; color:#e0d0ff; text-align:center; line-height:1.6; }
+    .stars { position:fixed; top:0; left:0; width:100%; height:100%; background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08) 1px, transparent 1px), radial-gradient(circle at 90% 80%, rgba(200,200,255,0.06) 2px, transparent 2px); background-size:60px 60px; pointer-events:none; z-index:-1; }
+    header { padding:80px 20px 50px; background:linear-gradient(to bottom, rgba(20,0,60,0.8), rgba(10,0,30,0.95)); }
+    h1 { font-size:3.2rem; margin:0 0 10px; color:#d0b0ff; text-shadow:0 0 20px #a080ff; }
+    .subtitle { font-size:1.3rem; opacity:0.9; margin-bottom:40px; }
+    .gallery { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:30px; max-width:1400px; margin:0 auto 60px; padding:0 20px; }
+    .card { background:rgba(30,10,70,0.6); border:1px solid rgba(160,120,255,0.3); border-radius:16px; overflow:hidden; transition:all 0.3s ease; backdrop-filter:blur(4px); }
+    .card:hover { transform:translateY(-10px); box-shadow:0 20px 40px rgba(160,100,255,0.4); }
+    .card img { width:100%; height:380px; object-fit:cover; }
+    .info { padding:20px; }
+    .title { font-size:1.5rem; margin:0 0 10px; color:#c0a0ff; }
+    .price { font-size:1.4rem; color:#80ffff; margin:10px 0; }
+    .limit { font-size:1rem; color:#ff80ff; margin:5px 0; font-weight:bold; }
+    button { background:linear-gradient(45deg, #a080ff, #80c0ff); color:#000; border:none; padding:12px 32px; border-radius:50px; font-weight:bold; cursor:pointer; font-size:1.1rem; transition:0.3s; }
+    button:hover { transform:scale(1.05); }
+    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; z-index:100; }
+    .modal-content { background:rgba(30,10,70,0.95); padding:40px; border-radius:20px; max-width:90%; width:500px; border:1px solid #a080ff; }
+    .info-section { max-width:900px; margin:40px auto; padding:30px; background:rgba(30,10,70,0.5); border-radius:16px; font-size:1.1rem; }
+    footer { padding:40px 20px; font-size:0.9rem; opacity:0.7; }
   </style>
 </head>
 <body>
@@ -124,43 +34,56 @@
     <p class="subtitle">Digitální tisky k vlastnímu vytištění • High-res soubory 300 DPI</p>
   </header>
 
+  <div class="info-section">
+    <h2>O kolekci</h2>
+    <p>Celkem <strong>29 unikátních designů</strong>, každý v limitované edici <strong>jen 10 kusů</strong>.<br>
+    Vyber si formát: <strong>A3</strong> nebo <strong>A2</strong> (cena se liší dle formátu).<br>
+    Po platbě ti pošlu high-res soubor (PNG/JPG/PDF 300 DPI) + potvrdím zbývající počet kusů.</p>
+  </div>
+
   <div class="gallery">
-    <!-- Nahraď src vlastními obrázky (nahraj je do repozitáře nebo použij externí odkazy) -->
+    <!-- Tady je 29 karet – nahraď názvy, ceny, src obrázků svými -->
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800" alt="Tisk 1">
+      <img src="./tisk01.jpg" alt="Tisk 01">
       <div class="info">
-        <div class="title">Nebula Lásky</div>
-        <div class="price">490 Kč</div>
-        <button onclick="buy('Nebula Lásky', '490 Kč', 'A3 / A2 / A1 formát, 300 DPI')">Koupit tisk</button>
+        <div class="title">Tisk 01 – Vesmírná harmonie</div>
+        <div class="price">A3: 490 Kč | A2: 790 Kč</div>
+        <div class="limit">Limit: 10 ks</div>
+        <button onclick="buy('Tisk 01 – Vesmírná harmonie', 'A3: 490 Kč | A2: 790 Kč')">Koupit tisk</button>
       </div>
     </div>
 
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?w=800" alt="Tisk 2">
+      <img src="./tisk02.jpg" alt="Tisk 02">
       <div class="info">
-        <div class="title">Kosmos Harmonie</div>
-        <div class="price">590 Kč</div>
-        <button onclick="buy('Kosmos Harmonie', '590 Kč', 'A3 / A2 / A1 formát, 300 DPI')">Koupit tisk</button>
+        <div class="title">Tisk 02 – Kosmická láska</div>
+        <div class="price">A3: 490 Kč | A2: 790 Kč</div>
+        <div class="limit">Limit: 10 ks</div>
+        <button onclick="buy('Tisk 02 – Kosmická láska', 'A3: 490 Kč | A2: 790 Kč')">Koupit tisk</button>
       </div>
     </div>
 
-    <!-- Přidej další karty podle potřeby, stačí kopírovat blok -->
+    <!-- Opakuj tento blok 27× pro Tisk 03 až Tisk 29 – nebo mi pošli seznam názvů a já ti to připravím přesně -->
+    <!-- Příklad pro Tisk 03: -->
+    <!-- <div class="card"> ... stejný struktura ... </div> -->
+
+    <!-- ... zbytek až do 29 ... -->
   </div>
 
   <div id="modal" class="modal">
     <div class="modal-content">
       <h2 id="modalTitle"></h2>
-      <p id="modalFormat"></p>
-      <p>Po přijetí platby ti do 24 hodin pošlu odkaz ke stažení souboru.</p>
+      <p id="modalPrice"></p>
+      <p>Limitovaná edice – jen 10 ks celkem. Vyber formát A3 nebo A2 při platbě (napiš to do mailu).</p>
+      <p>Po přijetí platby ti do 24 hodin pošlu odkaz ke stažení souboru + info o zbývajících kusech.</p>
       
       <h3>Bankovní převod</h3>
-      <p>IBAN: <strong>CZXXXXXXXXXXXXXXXXXXXXXXXXXX</strong><br>
-      Variabilní symbol: 2026 + první 4 písmena příjmení<br>
-      (nebo použij email jako VS)</p>
+      <p>IBAN: <strong>[TVŮJ IBAN ZDE]</strong><br>
+      Variabilní symbol: 2026 + první 4 písmena příjmení</p>
 
       <h3>Kryptoměny</h3>
-      <p>BTC: <code>bc1qxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code><br>
-      ETH / USDT (ERC-20): <code>0xYourEthereumAddressHere</code><br>
+      <p>BTC: <code>[TVÁ BTC ADRESA]</code><br>
+      ETH / USDT (ERC-20): <code>[TVÁ ETH ADRESA]</code><br>
       Po platbě pošli TXID na email.</p>
 
       <p><strong>Kontakt po platbě: svata.sebek@seznam.cz</strong></p>
@@ -174,9 +97,9 @@
   </footer>
 
   <script>
-    function buy(title, price, format) {
-      document.getElementById('modalTitle').innerHTML = title + ' – ' + price;
-      document.getElementById('modalFormat').innerHTML = format;
+    function buy(title, price) {
+      document.getElementById('modalTitle').innerHTML = title;
+      document.getElementById('modalPrice').innerHTML = price;
       document.getElementById('modal').style.display = 'flex';
     }
     function closeModal() {
@@ -185,3 +108,4 @@
   </script>
 </body>
 </html>
+
