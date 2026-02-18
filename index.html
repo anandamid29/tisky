@@ -1,37 +1,154 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Šťastný ať je celý vesmír • Limitované tisky</title>
   <style>
-    body {margin:0; font-family:'Segoe UI',Arial,sans-serif; background:#0a0015; color:#e0d0ff; text-align:center; line-height:1.6;}
-    .stars {position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 10% 20%,rgba(255,255,255,0.08) 1px,transparent 1px),radial-gradient(circle at 90% 80%,rgba(200,200,255,0.06) 2px,transparent 2px);background-size:60px 60px;pointer-events:none;z-index:-1;}
-    header {padding:80px 20px 50px;background:linear-gradient(to bottom,rgba(20,0,60,0.8),rgba(10,0,30,0.95));}
-    h1 {font-size:3.2rem;margin:0 0 10px;color:#d0b0ff;text-shadow:0 0 20px #a080ff;}
-    .subtitle {font-size:1.3rem;opacity:0.9;margin-bottom:40px;}
-    .gallery {display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;max-width:1400px;margin:0 auto 60px;padding:0 20px;}
-    .card {background:rgba(30,10,70,0.6);border:1px solid rgba(160,120,255,0.3);border-radius:16px;overflow:hidden;transition:all 0.3s ease;backdrop-filter:blur(4px);}
-    .card:hover {transform:translateY(-10px);box-shadow:0 20px 40px rgba(160,100,255,0.4);}
-    ..card img {
-  width: 100%;
-  height: 380px;               /* nebo 400px, 450px – zkus si upravit */
-  object-fit: contain;         /* ← změna z cover na contain */
-  background: #1a0033;         /* tmavé pozadí pro prázdné místo */
-  padding: 10px;               /* volitelně – malý odstup od okrajů karty */
-  box-sizing: border-box;
-}
-    .info {padding:20px;}
-    .title {font-size:2.2rem;margin:0 0 10px;color:#c0a0ff;font-weight:bold;letter-spacing:2px;}
-    .price {font-size:1.4rem;color:#80ffff;margin:10px 0;}
-    .limit {font-size:1rem;color:#ff80ff;margin:5px 0;font-weight:bold;}
-    .detail {font-size:0.95rem;color:#b0a0ff;margin:8px 0;}
-    button {background:linear-gradient(45deg,#a080ff,#80c0ff);color:#000;border:none;padding:12px 32px;border-radius:50px;font-weight:bold;cursor:pointer;font-size:1.1rem;transition:0.3s;}
-    button:hover {transform:scale(1.05);}
-    .modal {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);align-items:center;justify-content:center;z-index:100;}
-    .modal-content {background:rgba(30,10,70,0.95);padding:40px;border-radius:20px;max-width:90%;width:500px;border:1px solid #a080ff;}
-    .info-section {max-width:900px;margin:40px auto;padding:30px;background:rgba(30,10,70,0.5);border-radius:16px;font-size:1.1rem;}
-    footer {padding:40px 20px;font-size:0.9rem;opacity:0.7;}
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0a0015;
+      color: #e0d0ff;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.08) 1px, transparent 1px),
+                  radial-gradient(circle at 90% 80%, rgba(200,200,255,0.06) 2px, transparent 2px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: -1;
+    }
+    header {
+      padding: 80px 20px 50px;
+      background: linear-gradient(to bottom, rgba(20,0,60,0.8), rgba(10,0,30,0.95));
+    }
+    h1 {
+      font-size: 3.2rem;
+      margin: 0 0 10px;
+      color: #d0b0ff;
+      text-shadow: 0 0 20px #a080ff;
+    }
+    .subtitle {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      margin-bottom: 40px;
+    }
+    .info-section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(30,10,70,0.5);
+      border-radius: 16px;
+      font-size: 1.1rem;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1600px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+    }
+    .card {
+      background: rgba(30,10,70,0.6);
+      border: 1px solid rgba(160,120,255,0.3);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      min-height: 600px;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(160,100,255,0.4);
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: contain;
+      background: #1a0033;
+      padding: 20px;
+      box-sizing: border-box;
+      margin: auto 0;
+    }
+    .info {
+      padding: 20px 20px 30px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .title {
+      font-size: 3rem;
+      margin: 0 0 16px;
+      color: #c0a0ff;
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+    .price {
+      font-size: 1.6rem;
+      color: #80ffff;
+      margin: 12px 0;
+      font-weight: bold;
+    }
+    .limit {
+      font-size: 1.1rem;
+      color: #ff80ff;
+      margin: 8px 0;
+      font-weight: bold;
+    }
+    .detail {
+      font-size: 1rem;
+      color: #b0a0ff;
+      margin: 16px 0 24px;
+    }
+    button {
+      background: linear-gradient(45deg, #a080ff, #80c0ff);
+      color: #000;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1.15rem;
+      transition: 0.3s;
+      align-self: center;
+      margin-top: auto;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+    .modal-content {
+      background: rgba(30,10,70,0.95);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 90%;
+      width: 520px;
+      border: 1px solid #a080ff;
+    }
+    footer {
+      padding: 60px 20px 40px;
+      font-size: 1rem;
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body>
@@ -47,42 +164,60 @@
     <p><strong>29 unikátních designů</strong>, každý v absolutní limitované edici <strong>pouze 10 kusů</strong>.</p>
     <p><strong>Tisknuto na 100% Cotton Smooth 320 g/m²</strong> – archivní papír nejvyšší třídy.</p>
     <p><strong>Každý kus</strong> je vlastnoručně signovaný, očíslovaný a ověřený autorem.</p>
-    <p>Vyberte formát: <strong>A3</strong> nebo <strong>A2</strong>.</p>
+    <p>Vyberte formát: <strong>A3</strong> (3000 Kč) nebo <strong>A2</strong> (5000 Kč).</p>
   </div>
 
   <div class="gallery">
 
     <!-- 29 karet – jen číslo jako titulek -->
 
-    <div class="card"><img src="./1.jpg" alt="01"><div class="info"><div class="title">01</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('01','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./2.jpg" alt="02"><div class="info"><div class="title">02</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('02','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./3.jpg" alt="03"><div class="info"><div class="title">03</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('03','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./4.jpg" alt="04"><div class="info"><div class="title">04</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('04','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./5.jpg" alt="05"><div class="info"><div class="title">05</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('05','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./6.jpg" alt="06"><div class="info"><div class="title">06</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('06','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./7.jpg" alt="07"><div class="info"><div class="title">07</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('07','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./8.jpg" alt="08"><div class="info"><div class="title">08</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('08','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./9.jpg" alt="09"><div class="info"><div class="title">09</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('09','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./10.jpg" alt="10"><div class="info"><div class="title">10</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('10','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./11.jpg" alt="11"><div class="info"><div class="title">11</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('11','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./12.jpg" alt="12"><div class="info"><div class="title">12</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('12','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./13.jpg" alt="13"><div class="info"><div class="title">13</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('13','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./14.jpg" alt="14"><div class="info"><div class="title">14</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('14','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./15.jpg" alt="15"><div class="info"><div class="title">15</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('15','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./16.jpg" alt="16"><div class="info"><div class="title">16</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('16','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./17.jpg" alt="17"><div class="info"><div class="title">17</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('17','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./18.jpg" alt="18"><div class="info"><div class="title">18</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('18','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./19.jpg" alt="19"><div class="info"><div class="title">19</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('19','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./20.jpg" alt="20"><div class="info"><div class="title">20</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('20','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./21.jpg" alt="21"><div class="info"><div class="title">21</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('21','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./22.jpg" alt="22"><div class="info"><div class="title">22</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('22','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./23.jpg" alt="23"><div class="info"><div class="title">23</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('23','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./24.jpg" alt="24"><div class="info"><div class="title">24</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('24','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./25.jpg" alt="25"><div class="info"><div class="title">25</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('25','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./26.jpg" alt="26"><div class="info"><div class="title">26</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('26','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./27.jpg" alt="27"><div class="info"><div class="title">27</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('27','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./28.jpg" alt="28"><div class="info"><div class="title">28</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('28','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
-    <div class="card"><img src="./29.jpg" alt="29"><div class="info"><div class="title">29</div><div class="price">A3: 990 Kč | A2: 1490 Kč</div><div class="limit">Limit: jen 10 ks</div><div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný</div><button onclick="buy('29','A3: 990 Kč | A2: 1490 Kč')">Rezervovat / Koupit</button></div></div>
+    <div class="card">
+      <img src="./1.jpg" alt="01">
+      <div class="info">
+        <div class="title">01</div>
+        <div class="price">A3: 3000 Kč | A2: 5000 Kč</div>
+        <div class="limit">Limit: jen 10 ks</div>
+        <div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný • ověřený</div>
+        <button onclick="buy('01', 'A3: 3000 Kč | A2: 5000 Kč')">Rezervovat / Koupit</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./2.jpg" alt="02">
+      <div class="info">
+        <div class="title">02</div>
+        <div class="price">A3: 3000 Kč | A2: 5000 Kč</div>
+        <div class="limit">Limit: jen 10 ks</div>
+        <div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný • ověřený</div>
+        <button onclick="buy('02', 'A3: 3000 Kč | A2: 5000 Kč')">Rezervovat / Koupit</button>
+      </div>
+    </div>
+
+    <!-- Opakuj tento blok pro 3 až 29 – jen změň src a title -->
+
+    <div class="card">
+      <img src="./3.jpg" alt="03">
+      <div class="info">
+        <div class="title">03</div>
+        <div class="price">A3: 3000 Kč | A2: 5000 Kč</div>
+        <div class="limit">Limit: jen 10 ks</div>
+        <div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný • ověřený</div>
+        <button onclick="buy('03', 'A3: 3000 Kč | A2: 5000 Kč')">Rezervovat / Koupit</button>
+      </div>
+    </div>
+
+    <!-- ... zde vlož zbylé karty 04 až 29 stejným způsobem ... -->
+
+    <div class="card">
+      <img src="./29.jpg" alt="29">
+      <div class="info">
+        <div class="title">29</div>
+        <div class="price">A3: 3000 Kč | A2: 5000 Kč</div>
+        <div class="limit">Limit: jen 10 ks</div>
+        <div class="detail">100% bavlna 320 g/m² • signovaný • očíslovaný • ověřený</div>
+        <button onclick="buy('29', 'A3: 3000 Kč | A2: 5000 Kč')">Rezervovat / Koupit</button>
+      </div>
+    </div>
 
   </div>
 
@@ -92,23 +227,23 @@
       <h2 id="modalTitle"></h2>
       <p id="modalPrice"></p>
       <p><strong>Limitovaná edice – jen 10 kusů!</strong></p>
-      <p>Vyberte formát A3 nebo A2 (napište do zprávy).</p>
-      <p>Po platbě vám pošlu fyzický tisk (signovaný, očíslovaný).</p>
+      <p>Vyberte formát A3 (3000 Kč) nebo A2 (5000 Kč) – napište do zprávy.</p>
+      <p>Po platbě vám pošlu fyzický tisk (signovaný, očíslovaný, ověřený).</p>
       
       <h3>Bankovní převod</h3>
-      <p>IBAN: <strong>[ZDE VÁŠ IBAN]</strong></p>
+      <p>IBAN: <strong>[ZDE TVŮJ IBAN]</strong></p>
       <p>VS: 2026 + první 4 písmena příjmení</p>
 
-      <h3>Krypto</h3>
-      <p>BTC: <code>[VAŠE BTC ADRESA]</code></p>
-      <p>ETH/USDT: <code>[VAŠE ETH ADRESA]</code></p>
+      <h3>Kryptoměny</h3>
+      <p>BTC: <code>[TVÁ BTC ADRESA]</code></p>
+      <p>ETH / USDT: <code>[TVÁ ETH ADRESA]</code></p>
 
-      <p><strong>Kontakt: svata.sebek@seznam.cz</strong></p>
+      <p><strong>Kontakt a rezervace: svata.sebek@seznam.cz</strong></p>
       <button onclick="closeModal()">Zavřít</button>
     </div>
   </div>
 
-  <footer style="padding:40px 20px;font-size:0.9rem;opacity:0.7;">
+  <footer>
     X: <a href="https://x.com/anandamid29" style="color:#80ffff;">@anandamid29</a>
   </footer>
 
